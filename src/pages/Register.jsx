@@ -1,43 +1,60 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import { signUpUser, uploadImage } from '../Config/firebase/FirebaseMethod'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
+  let fullName = useRef()
+  let email = useRef()
+  let password = useRef()
+  let myFile = useRef()
+
+  // for navigation
+  let navigate = useNavigate()
+
+  let registerUser = async (event) => {
+    event.preventDefault()
+
+    let userProfileUrl = await uploadImage(myFile.current.files[0], email.current.value)
+    console.log(userProfileUrl);
+
+    let registerUserData = await signUpUser({
+      fullname: fullName.current.value,
+      email: email.current.value,
+      password: password.current.value,
+    })
+    console.log('user register successfully', registerUserData);
+    navigate('/')
+  }
+
   return (
     <div>
       <section className="container mx-auto p-4">
         <div className="login-section max-w-md mx-auto mt-14 bg-white shadow-lg p-6 rounded-lg">
-          <form id="form" className="flex flex-col gap-4">
+          <form onSubmit={registerUser} className="flex flex-col gap-4">
             <input
+              ref={fullName}
               className="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-              id="first_name"
               type="text"
-              placeholder="First Name"
+              placeholder="Full Name"
               required
             />
             <input
-              className="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-              id="last_name"
-              type="text"
-              placeholder="Last Name"
-              required
-            />
-            <input
-              id="email"
+              ref={email}
               type="email"
               placeholder="Email"
               className="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <input
-              id="password"
+              ref={password}
               type="password"
               placeholder="Password"
               required
               className="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <input
-              className="p-0"
               type="file"
-              id="myfile"
-              name="myfile"
+              ref={myFile}
+              placeholder="file"
               required
               className="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />

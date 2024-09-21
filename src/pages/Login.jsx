@@ -4,7 +4,8 @@ const Login = () => {
     let email = useRef()
     let password = useRef()
 
-    function loginUser() {
+    let loginUser = event => {
+        event.preventDefault()
         console.log(email.current.value);
         console.log(password.current.value);
     }
