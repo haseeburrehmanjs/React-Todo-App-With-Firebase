@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Register from './pages/Register.jsx'
 import Home from './pages/Home.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import ProtectedRout from './pages/ProtectedRout.jsx'
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'home',
-        element : <Home />
+        element : <ProtectedRout component = {<Home/>} />
       },
     ]
   }

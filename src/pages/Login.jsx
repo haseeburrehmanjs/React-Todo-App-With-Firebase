@@ -1,20 +1,30 @@
 import React, { useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { loginUser } from '../Config/firebase/FirebaseMethod'
 
 const Login = () => {
     let email = useRef()
     let password = useRef()
+    let navigate = useNavigate()
 
-    let loginUser = event => {
+    let loginUserFunc = async (event) => {
         event.preventDefault()
         console.log(email.current.value);
         console.log(password.current.value);
+
+        let loginUserFromDatabase = await loginUser({
+            email : email.current.value,
+            password : password.current.value
+        })
+        console.log('user login ho giya',loginUserFromDatabase);
+        navigate('/home') 
     }
 
     return (
         <>
             <section className="container mx-auto p-4">
                 <div className="login-section mt-24 max-w-md mx-auto bg-white shadow-lg p-6 rounded-lg">
-                    <form onSubmit={loginUser} className="flex flex-col gap-4">
+                    <form onSubmit={loginUserFunc} className="flex flex-col gap-4">
                         <label htmlFor="email" className="text-lg font-medium">
                             Email
                         </label>
