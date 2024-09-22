@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { loginUser } from '../Config/firebase/FirebaseMethod'
 
 const Login = () => {
@@ -55,9 +55,9 @@ const Login = () => {
                                 <br />
                             </div>
                         </div>
-                        <a className="text-center text-blue-500 hover:underline mt-4" href="./registor.html">
+                        <Link to='register' className="text-center text-blue-500 hover:underline mt-4" >
                             NOT A USER? PLEASE REGISTER FIRST
-                        </a>
+                        </Link>
                     </form>
                 </div>
             </section>

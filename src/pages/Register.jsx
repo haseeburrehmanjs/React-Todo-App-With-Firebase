@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { signUpUser, uploadImage } from '../Config/firebase/FirebaseMethod'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Register = () => {
   let fullName = useRef()
@@ -69,9 +69,9 @@ const Register = () => {
                 <br />
               </div>
             </div>
-            <a className="text-center text-blue-500 hover:underline mt-4" href="./login.html">
+            <Link to='/' className="text-center text-blue-500 hover:underline mt-4">
               ALREADY A USER? PLEASE LOGIN
-            </a>
+            </Link>
           </form>
         </div>
       </section>
