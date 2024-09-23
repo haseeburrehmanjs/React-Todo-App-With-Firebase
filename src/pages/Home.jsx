@@ -45,7 +45,7 @@ const Home = () => {
         <div>
           <ul className='flex flex-col gap-2 mt-5'>{todo.map((item, index) => (
             <div>
-              <li className='w-[100%] p-4 bg-slate-100'>{index + 1}) {item}</li>
+              <li className='w-[100%] p-4 bg-slate-100'>{index + 1} {item}</li>
               <div className='flex gap-3 mt-3'>
                 <Button onClick={() => deleteBtn(index)} variant='contained' color='error'>Delete</Button>
                 <Button variant='contained' onClick={() => editBtn(index)}>Edit</Button>
